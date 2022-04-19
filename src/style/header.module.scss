@@ -1,0 +1,19 @@
+.header-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .link-container {
+    margin: auto;
+    background-color: red;
+
+    .link {
+      color: white;
+    }
+
+    .link-current {
+      text-decoration: underline;
+      // color: white;
+    }
+  }
+}
