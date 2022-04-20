@@ -1,16 +1,20 @@
-// redux
+// react
 import { useMemo } from "react";
-import { User } from "../models/user";
+
+// redux
 import { selectUser } from "../redux/slices/userSlice";
 import { store } from "../redux/store";
 
 // style
 import styles from "../style/home-content.module.scss";
 
+// project imports
+import { User } from "../models/user";
+
 const subtitle: string = "Test project Rick&Morty";
 const characterListCta: string = "Characters";
 
-const HomeContent = () => {
+const HomePageContent: React.FC = () => {
   const user: User = useMemo(() => selectUser(store.getState()), []);
 
   return (
@@ -26,4 +30,4 @@ const HomeContent = () => {
   );
 };
 
-export default HomeContent;
+export default HomePageContent;

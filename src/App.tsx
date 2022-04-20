@@ -1,12 +1,13 @@
+// style
 import "./App.css";
-import HomePage from "./pages/home";
+
+// project imports
+import createRoutes from "./navigation/routes";
+
+const routes = createRoutes();
 
 function App() {
-  return (
-    <div className="App">
-      <HomePage />
-    </div>
-  );
+  return <div className="App">{routes}</div>;
 }
 
 export default App;

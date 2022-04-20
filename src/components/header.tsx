@@ -11,7 +11,7 @@ import PageTitle from "../enumerations/pageTitle";
 import { classJoin } from "../utils/misc";
 
 type HeaderProps = {
-  title: PageTitle;
+  title?: PageTitle;
 };
 
 const Header: React.FC<HeaderProps> = ({ title }) => {
