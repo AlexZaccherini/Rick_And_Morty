@@ -1,5 +1,6 @@
 // react
 import { useCallback } from "react";
+import { Link } from "react-router-dom";
 
 // styles
 import styles from "../style/header.module.scss";
@@ -9,6 +10,7 @@ import PageTitle from "../enumerations/pageTitle";
 
 // utils
 import { classJoin } from "../utils/misc";
+import { pageTitleToPath } from "../utils/pageTitleMapper";
 
 type HeaderProps = {
   title?: PageTitle;
@@ -19,14 +21,16 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
     return Object.values(PageTitle).map((page: PageTitle) => {
       return (
         <div key={page} className={styles["header-content-item"]}>
-          <span
-            className={classJoin(styles, [
-              "link",
-              title === page ? "link-current" : "",
-            ])}
-          >
-            {page}
-          </span>
+          <Link to={pageTitleToPath(page)}>
+            <span
+              className={classJoin(styles, [
+                "link",
+                title === page ? "link-current" : "",
+              ])}
+            >
+              {page}
+            </span>
+          </Link>
         </div>
       );
     });
