@@ -1,7 +1,8 @@
+// redux
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
-// Type of current slice 
+// Type of current slice
 interface CounterSlice {
   value: number;
 }

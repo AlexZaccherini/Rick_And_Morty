@@ -1,14 +1,16 @@
+// styles
+import styles from "../style/home-page.module.scss";
+
+// project imports
 import Footer from "../components/footer";
 import Header from "../components/header";
 import HomeContent from "../components/homeContent";
-import Pages from "../enumerations/pages";
-
-import styles from "../style/home-page.module.scss";
+import PageTitle from "../enumerations/pageTitle";
 
 const HomePage = () => {
   return (
     <>
-      <Header title={Pages.HOME} />
+      <Header title={PageTitle.HOME} />
       <div className={styles["home-content-container"]}>
         <HomeContent />
       </div>

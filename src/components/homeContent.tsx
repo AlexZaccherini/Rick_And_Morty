@@ -1,7 +1,8 @@
+// redux
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHooks";
-
 import { decrement, increment } from "../redux/slices/counterSlice";
 
+// style
 import styles from "../style/home-content.module.scss";
 
 const HomeContent = () => {
