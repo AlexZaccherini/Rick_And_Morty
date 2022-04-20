@@ -14,7 +14,7 @@ type HeaderProps = {
   title: PageTitle;
 };
 
-const Header = (props: HeaderProps) => {
+const Header: React.FC<HeaderProps> = ({ title }) => {
   const _getHeaderLinks = useCallback(() => {
     return Object.values(PageTitle).map((page: PageTitle) => {
       return (
@@ -22,7 +22,7 @@ const Header = (props: HeaderProps) => {
           <span
             className={classJoin(styles, [
               "link",
-              props.title === page ? "link-current" : "",
+              title === page ? "link-current" : "",
             ])}
           >
             {page}
@@ -30,7 +30,7 @@ const Header = (props: HeaderProps) => {
         </div>
       );
     });
-  }, [props.title]);
+  }, [title]);
 
   const _getHeaderContents = useCallback(() => {
     let contentItems: JSX.Element[] = _getHeaderLinks();

@@ -2,7 +2,7 @@ import styles from "../style/footer.module.scss";
 
 const footerContent: string = "Content of the footer";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <div className={styles["footer-container"]}>
       <span className={styles["footer-content"]}>{footerContent}</span>
