@@ -1,3 +1,4 @@
+import Footer from "../components/footer";
 import Header from "../components/header";
 import HomeContent from "../components/homeContent";
 import Pages from "../enumerations/pages";
@@ -11,6 +12,7 @@ const HomePage = () => {
       <div className={styles["home-content-container"]}>
         <HomeContent />
       </div>
+      <Footer />
     </>
   );
 };
