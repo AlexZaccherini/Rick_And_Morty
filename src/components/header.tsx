@@ -36,13 +36,13 @@ const Header = (props: HeaderProps) => {
     let contentItems: JSX.Element[] = _getHeaderLinks();
 
     contentItems.push(
-      <div className={styles["header-content-item"]}>
+      <div key={"search"} className={styles["header-content-item"]}>
         <span>search</span>
       </div>
     );
 
     return contentItems;
-  }, []);
+  }, [_getHeaderLinks]);
 
   return (
     <div className={styles["header-container"]}>{_getHeaderContents()} </div>

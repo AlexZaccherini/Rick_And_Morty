@@ -1,20 +1,27 @@
 // redux
-import { useAppSelector, useAppDispatch } from "../hooks/reduxHooks";
-import { decrement, increment } from "../redux/slices/counterSlice";
+import { useMemo } from "react";
+import { User } from "../models/user";
+import { selectUser } from "../redux/slices/userSlice";
+import { store } from "../redux/store";
 
 // style
 import styles from "../style/home-content.module.scss";
 
+const subtitle: string = "Test project Rick&Morty";
+const characterListCta: string = "Characters";
+
 const HomeContent = () => {
-  // The `state` arg is correctly typed as `RootState` already
-  const count = useAppSelector((state) => state.counter.value);
-  const dispatch = useAppDispatch();
+  const user: User = useMemo(() => selectUser(store.getState()), []);
 
   return (
     <div className={styles["home-content"]}>
-      <button onClick={() => dispatch(increment())}>+</button>
-      <button onClick={() => dispatch(decrement())}>-</button>
-      <span>{count}</span>
+      <div>
+        <h1>{`${user.name} ${user.surname}`}</h1>
+        <h2>{subtitle}</h2>
+      </div>
+      <div className={styles["button-container"]}>
+        <button>{characterListCta}</button>
+      </div>
     </div>
   );
 };
