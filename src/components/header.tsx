@@ -11,6 +11,7 @@ import PageTitle from "../enumerations/pageTitle";
 // utils
 import { classJoin } from "../utils/misc";
 import { pageTitleToPath } from "../utils/pageTitleMapper";
+import SearchInput from "./searchInput";
 
 type HeaderProps = {
   title?: PageTitle;
@@ -41,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
 
     contentItems.push(
       <div key={"search"} className={styles["header-content-item"]}>
-        <span>search</span>
+        {title === PageTitle.CHARACTER_LIST && <SearchInput />}
       </div>
     );
 

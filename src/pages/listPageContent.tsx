@@ -30,7 +30,7 @@ const ListPageContent: React.FC = () => {
 
   useEffect(() => {
     _fetchData();
-  });
+  }, []);
 
   const _fetchData = useCallback(
     (pageIndex?: number) => {

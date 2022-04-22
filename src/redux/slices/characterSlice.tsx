@@ -94,25 +94,14 @@ export const characterSlice = createSlice({
 
     removeFavouriteCharacterWithId: (state, action: PayloadAction<number>) => {
       const id: number = action.payload;
-      // console.log("index " + id);
-      // const favouriteCharacter: Character | undefined =
-      //   state.characterList.find((character: Character) => character.id === id);
 
-      // console.log("fav " + favouriteCharacter);
-
-      // if (favouriteCharacter !== undefined) {
       const toRemoveIndex: number = state.favouriteList.findIndex(
         (favouriteCharacter) => favouriteCharacter.id === id
       );
 
-      console.log("remove index: " + toRemoveIndex);
-      console.log("length fav: " + state.favouriteList.length);
       if (toRemoveIndex >= 0) {
         state.favouriteList.splice(toRemoveIndex, 1);
-        console.log("length fav: " + state.favouriteList.length);
       }
-
-      // }
     },
   },
 });
@@ -121,6 +110,9 @@ export const selectCharacter = (state: RootState) => state.character;
 
 export const selectCharacterList = (state: RootState) =>
   state.character.characterList;
+
+export const selectCurrentCharacterList = (state: RootState) =>
+  state.character.currentCharacterList;
 
 export const selectFavouriteCharacterList = (state: RootState) =>
   state.character.favouriteList;

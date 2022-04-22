@@ -14,14 +14,14 @@ import {
 import { Character } from "../models/character";
 import { RootState } from "../redux/store";
 
-const DetailPageContent: React.FC = (props) => {
+const DetailPageContent: React.FC = () => {
   const { id } = useParams();
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getCharacterFromId(Number(id)));
-  });
+  }, []);
 
   const currentCharacter: Character | undefined = useAppSelector(
     (store) => store.character.currentCharacter
@@ -42,8 +42,6 @@ const DetailPageContent: React.FC = (props) => {
   const favourites: Character[] = useAppSelector(
     (store: RootState) => store.character.favouriteList
   );
-
-  console.log(favourites);
 
   return (
     <>
