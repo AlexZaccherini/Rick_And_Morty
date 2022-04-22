@@ -1,5 +1,4 @@
 // react
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
@@ -22,11 +21,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <BrowserRouter>
-    <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>
 );
 

@@ -7,26 +7,62 @@ import { RootState } from "../store";
 
 interface CharacterSlice {
   characterList: Character[];
+  currentCharacterList: Character[];
   favouriteList: Character[];
+  currentCharacter: Character | undefined;
 }
 
 const initialState: CharacterSlice = {
   characterList: [],
+  currentCharacterList: [],
   favouriteList: [],
+  currentCharacter: undefined,
 };
 
 export const characterSlice = createSlice({
   name: "character",
   initialState,
   reducers: {
+    setCharacters: (state, action: PayloadAction<Character[]>) => {
+      state.currentCharacterList = action.payload;
+    },
     addCharacters: (state, action: PayloadAction<Character[]>) => {
-      state.characterList.push(...action.payload);
+      action.payload.forEach((character: Character) => {
+        if (
+          // verify if it is present a character with same id
+          !state.characterList.find(
+            (currentCharacter: Character) =>
+              currentCharacter.id === character.id
+          )
+        ) {
+          state.characterList.push(character);
+        }
+      });
     },
     addCharacter: (state, action: PayloadAction<Character>) => {
-      state.characterList.push(action.payload);
+      if (
+        !state.characterList.find(
+          (currentCharacter: Character) =>
+            currentCharacter.id === action.payload.id
+        )
+      ) {
+        state.characterList.push(action.payload);
+      }
     },
     addFavouriteCharacter: (state, action: PayloadAction<Character>) => {
-      state.favouriteList.push(action.payload);
+      if (
+        !state.favouriteList.find(
+          (currentCharacter: Character) =>
+            currentCharacter.id === action.payload.id
+        )
+      ) {
+        state.favouriteList.push(action.payload);
+      }
+    },
+    getCharacterFromId: (state, action: PayloadAction<number>) => {
+      state.currentCharacter = state.characterList.find(
+        (currentCharacter: Character) => currentCharacter.id === action.payload
+      );
     },
     removeCharacterWithId: (state, action: PayloadAction<number>) => {
       const id: number = action.payload;
@@ -58,17 +94,25 @@ export const characterSlice = createSlice({
 
     removeFavouriteCharacterWithId: (state, action: PayloadAction<number>) => {
       const id: number = action.payload;
-      const favouriteCharacter: Character | undefined =
-        state.characterList.find((character: Character) => character.id === id);
+      // console.log("index " + id);
+      // const favouriteCharacter: Character | undefined =
+      //   state.characterList.find((character: Character) => character.id === id);
 
-      if (favouriteCharacter !== undefined) {
-        const toRemoveIndex: number =
-          state.favouriteList.indexOf(favouriteCharacter);
+      // console.log("fav " + favouriteCharacter);
 
-        if (toRemoveIndex >= 0) {
-          state.favouriteList.splice(toRemoveIndex, toRemoveIndex);
-        }
+      // if (favouriteCharacter !== undefined) {
+      const toRemoveIndex: number = state.favouriteList.findIndex(
+        (favouriteCharacter) => favouriteCharacter.id === id
+      );
+
+      console.log("remove index: " + toRemoveIndex);
+      console.log("length fav: " + state.favouriteList.length);
+      if (toRemoveIndex >= 0) {
+        state.favouriteList.splice(toRemoveIndex, 1);
+        console.log("length fav: " + state.favouriteList.length);
       }
+
+      // }
     },
   },
 });
@@ -82,6 +126,8 @@ export const selectFavouriteCharacterList = (state: RootState) =>
   state.character.favouriteList;
 
 export const {
+  getCharacterFromId,
+  setCharacters,
   addCharacters,
   addCharacter,
   addFavouriteCharacter,

@@ -27,7 +27,7 @@ const createRoutes: () => JSX.Element = () => (
       }
     />
     <Route
-      path="/detail"
+      path="/detail/:id"
       element={
         <BasePage>
           <DetailPageContent />

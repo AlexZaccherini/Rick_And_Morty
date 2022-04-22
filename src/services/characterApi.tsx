@@ -1,6 +1,5 @@
 // external libs
 import axios from "axios";
-import { Exception } from "sass";
 
 // project imports
 import { Character } from "../models/character";
@@ -12,7 +11,7 @@ export class CharacterApiService {
     try {
       response = await axios.get<CharacterListDTO>(
         `https://rickandmortyapi.com/api/character/${
-          pageNumber ? "" : "?page=19"
+          pageNumber ? "?page=" + pageNumber : ""
         }`
       );
       if (response.status === 200) {
